@@ -125,7 +125,7 @@
     if (!remoteReady || !window.storage) return;
     const updatedAt = lastLocalWrite || Date.now();
     try {
-      await window.storage.set(REMOTE_KEY, { version: 1, updatedAt, state });
+      await window.storage.set(REMOTE_KEY, JSON.stringify({ version: 1, updatedAt, state }));
       setSyncStatus("saved", updatedAt);
     } catch (error) {
       console.error("[sync] no se pudo guardar en Supabase:", error);
@@ -145,7 +145,14 @@
       setAccount(user);
 
       const remote = await window.storage.get(REMOTE_KEY);
-      const envelope = remote && remote.value;
+      let envelope = remote && remote.value;
+      if (typeof envelope === "string") {
+        try {
+          envelope = JSON.parse(envelope);
+        } catch (error) {
+          envelope = null;
+        }
+      }
       const remoteState = envelope && envelope.state
         ? envelope.state
         : (envelope && envelope.completed ? envelope : null);
