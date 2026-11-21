@@ -114,6 +114,10 @@ El proyecto es estático: Vercel puede servirlo sin build.
 vercel --prod
 ```
 
+## Continuidad
+
+El estado técnico, las decisiones y los pendientes están en `HANDOFF.md`.
+
 ## Licencia
 
 A definir por el autor.
