@@ -56,8 +56,9 @@
     let isAdmin = false;
     let checkError = null;
     try {
-      const target = await resolveBackend();
-      isAdmin = (await window.storage.rpc(target.adminRpc)) === true;
+      // La cuenta administradora es la misma que la de Econometría I.
+      isAdmin = (await window.storage.rpc("eco_is_admin")) === true;
+      if (isAdmin) await resolveBackend();
     } catch (error) {
       checkError = error;
       console.error("[feedback-admin] no se pudo verificar el acceso:", (error && error.message) || error);
