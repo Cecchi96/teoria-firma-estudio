@@ -130,6 +130,8 @@
     window.addEventListener("hashchange", () => {
       if (document.body.classList.contains("fb-open")) close();
     });
+
+    detectAdmin();
   }
 
   function open() {
