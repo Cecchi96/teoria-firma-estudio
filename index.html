@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aula de estudio de Teoría de la Firma y la Organización Industrial. Unidades 05 y 06: competencias, regulación, cadenas globales de valor, innovación y cambio tecnológico.">
+  <meta name="theme-color" content="#f5f1e8">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <title>Teoría de la Firma · Aula de estudio</title>
+  <link rel="stylesheet" href="assets/styles.css?v=2">
+  <link rel="stylesheet" href="assets/feedback.css?v=1">
+</head>
+<body>
+  <button class="skip-link" type="button" data-action="skip-main">Saltar al contenido</button>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="#/u5/5a/teoria" aria-label="Aula de Teoría de la Firma">
+        <span class="brand__mark" aria-hidden="true">TF</span>
+        <span class="brand__text">
+          <strong>Teoría de la Firma</strong>
+          <span>Aula de estudio</span>
+        </span>
+      </a>
+
+      <button class="search-trigger" type="button" data-action="open-search" aria-label="Buscar en el aula">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path></svg>
+        <span class="search-trigger__label">Buscar un concepto, autor o tema…</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <div class="topbar__actions">
+        <span class="sync-pill" id="syncPill" hidden title="Progreso vinculado a tu cuenta de Fukuro">
+          <span class="sync-dot" aria-hidden="true"></span>
+          <span id="syncText">Conectando…</span>
+        </span>
+        <span class="mock-badge" title="Versión de estudio con las unidades 05 y 06">Versión de estudio</span>
+        <button class="icon-btn" type="button" data-action="toggle-theme" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z"></path></svg>
+        </button>
+        <div class="account-wrap">
+          <button class="account-btn" id="accountBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Cuenta" hidden>TF</button>
+          <div class="account-menu" id="accountMenu" hidden>
+            <small>Sesión iniciada como</small>
+            <b id="accountEmail"></b>
+            <a id="feedbackInboxLink" href="feedback.html" hidden>Comentarios recibidos</a>
+            <button type="button" id="signOutBtn">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="unit-tabs" id="unitTabs" aria-label="Unidades de la materia"></nav>
+
+  <div id="mockBanner"></div>
+
+  <main class="app" id="contenido" tabindex="-1">
+    <div id="view"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <strong>Teoría de la Firma y la Organización Industrial</strong>
+        <span>Universidad Nacional de Mar del Plata · Material de estudio personal</span>
+      </div>
+      <span class="footer__version">Versión de estudio 0.3 · TF</span>
+    </div>
+  </footer>
+
+  <button class="scroll-top" type="button" data-action="scroll-top" aria-label="Volver arriba" title="Volver arriba">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg>
+  </button>
+
+  <div class="toast-stack" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <dialog class="dialog" id="conceptDialog" aria-labelledby="conceptDialogTitle">
+    <div class="dialog__inner" id="conceptDialogBody"></div>
+  </dialog>
+
+  <div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Buscar en el aula">
+      <div class="search-panel__input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path></svg>
+        <input id="searchInput" type="search" placeholder="Buscá un concepto, autor o tema…" autocomplete="off" spellcheck="false">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-panel__footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> para navegar</span>
+        <span><kbd>Enter</kbd> para abrir</span>
+        <span><kbd>Esc</kbd> para cerrar</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="storage.js" data-app="teoria-firma"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js?v=3"></script>
+  <script src="assets/feedback.js?v=1"></script>
+</body>
+</html>
