@@ -91,7 +91,7 @@ La app usa el proyecto `fukuro` (`guknbhqonmpjtcbjsbni`):
 - URL y publishable key en `storage.js`. La publishable key es pública por diseño.
 - **Progreso:** se guarda en la tabla `kv` con `app = 'teoria-firma'` y `key = 'tf-aula-v1'`. RLS: cada usuario solo lee y escribe sus propias filas. No requiere SQL adicional.
 - **Comentarios:** la tabla `tf_feedback` y la tabla privada `tf_admins` se crean con `supabase/tf_feedback.sql`. Cualquier usuario autenticado puede enviar comentarios; solo las cuentas listadas en `tf_admins` pueden leerlos.
-- **Modo compatible:** mientras `tf_feedback` no exista, el sitio guarda los comentarios en `eco_feedback` con el prefijo `tf:` en `page_class` y usa la administración de Econometría I. La bandeja de Teoría de la Firma filtra solo esos registros. Al ejecutar `tf_feedback.sql`, la app detecta la tabla nueva y migra el destino automáticamente, sin cambiar el código.
+- **Modo compatible:** mientras `tf_feedback` no exista, el sitio guarda los comentarios en `eco_feedback` con el prefijo `tf:` en `page_class` y usa la administración de Econometría I. La bandeja de Teoría de la Firma filtra solo esos registros y la de Econometría los excluye. Al ejecutar `tf_feedback.sql`, la app detecta la tabla nueva y cambia el destino de los comentarios nuevos automáticamente, sin tocar el código. Los comentarios ya guardados en `eco_feedback` quedan allí.
 - Para habilitar la bandeja, después de ejecutar el SQL agregá tu cuenta:
 
 ```sql
