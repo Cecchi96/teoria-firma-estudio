@@ -130,8 +130,6 @@
     window.addEventListener("hashchange", () => {
       if (document.body.classList.contains("fb-open")) close();
     });
-
-    detectAdmin();
   }
 
   function open() {
@@ -145,6 +143,7 @@
 
     const context = pageContext();
     els.context.textContent = context.label;
+    detectAdmin();
     els.textarea.focus();
   }
 
@@ -318,21 +317,27 @@
     return "No se pudo enviar el comentario. Probá de nuevo en unos segundos.";
   }
 
-  async function detectAdmin() {
-    try {
-      const target = await resolveBackend();
-      const isAdmin = await withTimeout(window.storage.rpc(target.adminRpc), 20000);
-      state.isAdmin = isAdmin === true;
-    } catch (error) {
-      state.isAdmin = false;
-    }
+  let adminCheck = null;
 
-    if (!state.isAdmin) return;
+  function detectAdmin() {
+    if (adminCheck) return adminCheck;
+    adminCheck = (async () => {
+      try {
+        // La cuenta administradora es la misma que la de Econometría I.
+        const isAdmin = await withTimeout(window.storage.rpc("eco_is_admin"), 20000);
+        state.isAdmin = isAdmin === true;
+      } catch (error) {
+        state.isAdmin = false;
+      }
 
-    els.adminLink.hidden = false;
-    els.identity.textContent = "Estás viendo el aula como administrador.";
-    const menuLink = document.getElementById("feedbackInboxLink");
-    if (menuLink) menuLink.hidden = false;
+      if (!state.isAdmin) return;
+
+      els.adminLink.hidden = false;
+      els.identity.textContent = "Estás viendo el aula como administrador.";
+      const menuLink = document.getElementById("feedbackInboxLink");
+      if (menuLink) menuLink.hidden = false;
+    })();
+    return adminCheck;
   }
 
   if (document.readyState === "loading") {
